@@ -1,4 +1,4 @@
 [submodule "mm"]
 	path = mm
 	url = https://github.com/gigaHours/mm_sdk.git
-	ignore = diry
+	ignore = dirty
