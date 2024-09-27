@@ -1,4 +1,6 @@
 [submodule "mm"]
 	path = mm
 	url = https://github.com/gigaHours/mm_sdk.git
-	ignore = dirty
+[submodule "mm_sdk"]
+	path = mm_sdk
+	url = https://github.com/gigaHours/mm_sdk
