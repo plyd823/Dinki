@@ -117,6 +117,12 @@
     <ClCompile Include="mm\math3d.cpp">
       <Filter>Source Files\mm</Filter>
     </ClCompile>
+    <ClCompile Include="positionloader.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="noclip.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mm\imgui\imgui.h">
@@ -243,6 +249,15 @@
       <Filter>Header Files\mm</Filter>
     </ClInclude>
     <ClInclude Include="videoskipplugin.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="noclip.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="mmlib.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="positionloader.h">
       <Filter>Header Files\plugin</Filter>
     </ClInclude>
   </ItemGroup>

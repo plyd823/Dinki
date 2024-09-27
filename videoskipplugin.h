@@ -1,6 +1,6 @@
 #pragma once
 
-#include "plugin.h"
+#include "mmlib.h"
 
 class CVideoManager;
 

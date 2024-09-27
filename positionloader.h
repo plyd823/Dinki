@@ -1,0 +1,1 @@
+void PositionLoader(void* self);
