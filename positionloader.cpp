@@ -49,6 +49,7 @@ void PositionLoader(void* self)
         {
             mat.SetPosition(savedPos);
             playerObj->SetTransform(&mat);
+            //testing message sent    NEvent::CSendEvent
         }
     }
 }
