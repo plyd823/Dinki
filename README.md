@@ -3,6 +3,7 @@
 `Dinki` is the ultimate practice tool for Mad Max speedrunning
 
 *Controls*
+
 `RSHIFT` - toggle no clip state 
 
   `F1` - set fly speed to 10
