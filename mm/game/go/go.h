@@ -36,15 +36,41 @@ public:
     void* m_ProjectContext;
 };
 
+enum EUpdateQueue
+{
+    QueuePreUpdate,
+    QueuePostUpdate,
+    QueueParallellToRender,
+    QueueUpdateRender,
+    NOfQueues
+};
+
+class SUpdateQueueHandle
+{
+    public:
+        const EUpdateQueue m_Queue;
+        const short m_Handle;
+};
+
+class SUpdateQueueHandles
+{
+    SUpdateQueueHandle m_Handles[12];
+    char m_Count;
+};
+
 class CGameObject : public CRtti
 {
 public:
-    void* m_Tags;                                           //008-016
+    void*       m_Tags;                                     //008-016
     int         m_TagCount;                                 //016-020
     SObjectID   m_ObjectID;                                 //020-028
     CHashString m_AliasID;                                  //028-032
     CHashString m_NameHash;                                 //032-036
-    char pad1[108];                                         //036-144
+    bool m_Inited;                                          //036-037
+    char pad1[3];                                           //037-040
+    SUpdateQueueHandles m_UpdateHandles;                    //040-140
+    bool m_RemoveFromUpdate;                                //140-141
+    char pad2[3];                                           //141-144
     mm::std::vector<boost::shared_ptr<CGameObject>> m_Children; //144-176
     boost::weak_ptr<CGameObject>                m_Parent;   //176-192
     boost::weak_ptr<CGameObject>                m_WeakThis; //192-208
