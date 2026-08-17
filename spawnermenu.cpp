@@ -62,6 +62,39 @@ public:
 
 		ImGui::Begin("Spawner Menu"); //GUI Window Title
 
+		CCharacter* ch = *(CCharacter**)((uintptr_t)characterVoidPtr + 0x20); //character object, inherits damageable class
+        CVehicle* playerCar = ch->GetVehiclePtr();
+
+        // Display the health (assuming health is a member variable of CCharacter or a related system)
+        float health = 0.0f;
+        health = ch->GetHealth();  // Or use an appropriate method to access health
+
+        // Display the health stat
+        ImGui::Text("Health: %.2f", health);
+
+        CVehicle* playerCar2 = ch->GetVehiclePtr();
+        if(playerCar)
+        {
+            CVector3f velocity = playerCar2->GetVelocity();
+
+            // Calculate speed based on the velocity
+            float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z);
+            
+            // Display the speed stat
+            ImGui::Text("Speed: %.2f", speed);
+        }
+        else
+        {
+            CMatrix4f mat;
+            ch->GetTransform(&mat);
+
+            CVector3f vecForward = mat.Forward();
+            float speed = sqrt(vecForward.x * vecForward.x + vecForward.y * vecForward.y + vecForward.z * vecForward.z);
+
+            // Display the speed stat
+            ImGui::Text("Speed: %.2f", speed);
+        }
+
 		if (ImGui::Button("All Entities")) //All Entities button
 		{
 			currentMenu = E_MENU::ALL_ENTITY;

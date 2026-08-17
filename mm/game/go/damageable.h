@@ -15,6 +15,7 @@ public:
     virtual void SendOnDestroyEvent(CHashString) = 0;
 
     void SetHealth(float fHealth);
+    virtual float GetHealth() = 0;
     void SetInvulnerable(bool invulnerable) { m_Invulnerable = invulnerable; }
 
     bool m_Destroyed;

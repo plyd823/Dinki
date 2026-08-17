@@ -54,6 +54,9 @@
     <ClCompile Include="spawnermenu.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
+    <ClCompile Include="playerinfo.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
     <ClCompile Include="plugin.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>

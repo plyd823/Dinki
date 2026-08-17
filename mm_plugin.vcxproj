@@ -32,6 +32,8 @@
     <ClCompile Include="mm\imgui\imgui_renderer.cpp" />
     <ClCompile Include="positionloader.cpp" />
     <ClCompile Include="spawnermenu.cpp" />
+    <ClCompile Include="playerinfo.cpp" />
+    <ClCompile Include="loadstats.cpp" />
     <ClCompile Include="videoskipplugin.cpp" />
   </ItemGroup>
   <ItemGroup>

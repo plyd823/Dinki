@@ -19,6 +19,7 @@ public:
 	virtual void OnEnter(CCharacter*, bool, bool) = 0;
 	virtual void OnExit(CCharacter*, bool, bool) = 0;
 	virtual void SetVelocity(const CVector3f&) = 0;
+	virtual CVector3f GetVelocity() = 0;
 	virtual void SetTargetHeight(float) = 0;
 	virtual void SetLOD(bool, unsigned __int8, unsigned __int8) = 0;
 	virtual int GetNumberOfWheelsOnGround() = 0;
