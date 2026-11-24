@@ -4,6 +4,7 @@
 #include <xmmintrin.h>
 #include "mm/std.h"
 #include "mm/math3d.h"
+#include "mm/core/vector.h"
 
 namespace Graphics
 {

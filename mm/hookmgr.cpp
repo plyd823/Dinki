@@ -27,7 +27,7 @@ void Log(const char* str, ...)
 		AllocConsole();
 		FILE* fp;
 		freopen_s(&fp, "CONOUT$", "w", stdout);
-		out.open("C://mm_log.txt");
+		out.open("mm_log.txt");
 		once = true;
 	}
 

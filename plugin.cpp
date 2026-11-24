@@ -1,5 +1,9 @@
 ﻿#include "plugin.h"
 #include "mm/imgui/imgui.h"
+#include "dinki_watch.h"
+#include "dinki_diag.h"
+#include "dinki_build.h"
+#include "dinki_gog.h"
 
 void* characterVoidPtr = nullptr;
 uint16_t systemEventHitCount = 0;
@@ -8,7 +12,13 @@ uint16_t systemEventHitCount = 0;
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 {
 	if (dwReason == DLL_PROCESS_ATTACH) {
-		HookMgr::Initialize();
+		Dinki::LogBuildDiagnostics(); //records which exe this is (in mm_log.txt) before anything is hooked
+		if (Dinki::IsGog()) {
+			Dinki::GogStartup(); //a recognized GOG exe: finds what it needs at runtime, no address tables
+		}
+		else {
+			HookMgr::Initialize(); //every other build: the original address tables
+		}
 		PluginAttach(hModule, dwReason, lpReserved);
 	}
 
@@ -26,6 +36,8 @@ DEFHOOK(void, CPlayer__UpdateController, (void* self, float deltaTime)) { //hook
     NoClip(self, deltaTime); //No Clip Plugin
 
     PositionLoader(self); //Position Loader Plugin
+
+    Dinki::SampleWatches(self); //Watches overlay: reads values here, on the game thread
 
 
 

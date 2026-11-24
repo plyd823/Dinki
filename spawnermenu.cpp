@@ -1,4 +1,5 @@
 #include "spawnermenu.h"
+#include "dinki_build.h"
 
 const char* exported_ext = ".ee";
 
@@ -9,6 +10,9 @@ public:
 	}
 
 	void Game() override {
+		if (Dinki::IsGog())
+			return; //the spawner needs game addresses that aren't known for the GOG build yet
+
 		if (CGameState::m_InMainMenu || CGameState::m_State != CGameState::E_GAME_RUN || IsGuiOccludingMainDraw()) { //if game is main menu or not being ran
 			SendRenderEvent([this]() { force_hide = true; }); //hides spawner menu
 			return;
@@ -47,6 +51,8 @@ public:
 	char input_buffer[256] = { 0 };
 
 	void Render() override {
+		if (Dinki::IsGog())
+			return; //see Game()
 
 		if (force_hide) //if it needs to be force hidden, the render function will just never run
 			return;

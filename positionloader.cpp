@@ -1,4 +1,9 @@
 #include "plugin.h"
+#include "dinki_cmd.h"
+
+//hotkeys (rebindable in the Dinki menu, Insert by default)
+static const int kPosSave = Dinki::RegisterCommand("pos.save", "Save position", "Position", VK_F9);
+static const int kPosLoad = Dinki::RegisterCommand("pos.load", "Load position (hold to keep loading)", "Position", VK_F10);
 
 static CVector3f currentPos;
 static CVector3f savedPos;
@@ -10,7 +15,7 @@ void PositionLoader(void* self)
     CCharacter* ch = *(CCharacter**)((uintptr_t)self + 0x20);
     CGameObject* playerObj = NULL;
 
-    if (GetAsyncKeyState(VK_F9))
+    if (Dinki::ConsumePress(kPosSave))
     {
         CMatrix4f mat;
 
@@ -30,7 +35,7 @@ void PositionLoader(void* self)
 
         hasSaved = true;
     }
-    if (GetAsyncKeyState(VK_F10))
+    if (Dinki::IsHeld(kPosLoad))
     {
         CMatrix4f mat;
 

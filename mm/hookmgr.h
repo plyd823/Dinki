@@ -6,6 +6,8 @@
 
 // MadMax.exe 1.0.3.0
 
+void Log(const char* str, ...);
+
 #define ACT_EXE(gog, steam) ( (*(uint64_t*)(0x14192A150) == 0x1c3c00001bf0) ? (gog) : (steam) )
 
 //#define STEAM_BASE_OFFS (0x0) // 0x1447400 ???
@@ -44,11 +46,21 @@ public:
 	template<typename A, typename T, typename TO>
 	static void Install(A addr, T func, TO& orig)
 	{
-		if ((uintptr_t)addr == 0)
-			return;
+		Log("Attempting to install hook at address: 0x%p", (void*)addr);
 
-		MH_CreateHook((LPVOID)addr, (LPVOID)func, (LPVOID*)&orig);
-		MH_EnableHook((LPVOID)addr);
+		if ((uintptr_t)addr == 0) {
+			Log("ERROR: Address is null (0)!");
+			return;
+		}
+
+		MH_STATUS status = MH_CreateHook((LPVOID)addr, (LPVOID)func, (LPVOID*)&orig);
+		if (status == MH_OK) {
+			MH_EnableHook((LPVOID)addr);
+			Log("Successfully hooked address: 0x%p", (void*)addr);
+		}
+		else {
+			Log("Failed to create hook at address 0x%p with MinHook status: %d", (void*)addr, status);
+		}
 	}
 
 	template<typename T>
